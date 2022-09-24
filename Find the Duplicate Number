@@ -1,0 +1,41 @@
+//using map
+class Solution {
+public:
+    int findDuplicate(vector<int>& nums) {
+        int n=nums.size();
+        
+        map<int,int>mp;
+        
+        for(int i=0;nums.size();i++)
+        {
+            if(mp.find(nums[i])==mp.end())
+                mp[nums[i]]++;
+            else{
+                return nums[i];
+                break;
+            }
+        }
+        return 0;
+    }
+};
+
+
+
+
+#tortoise method
+class Solution:
+    def findDuplicate(self, nums: List[int]) -> int:
+        fast=nums[0]
+        slow=nums[0]
+        while True:
+            fast=nums[nums[nums[fast]]]
+            slow=nums[slow]
+            if slow == fast:
+                break;
+        ptr1=nums[0]
+        ptr2=slow
+        
+        while ptr1!=ptr2:
+            ptr1=nums[ptr1]
+            ptr2=nums[ptr2]
+        return slow
